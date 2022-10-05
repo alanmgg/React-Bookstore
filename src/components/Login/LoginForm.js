@@ -12,6 +12,8 @@ import Iconify from '../Iconify';
 import { FormProvider, RHFTextField, RHFCheckbox } from '../hook-form';
 // Api
 import { getClienteByEmail } from '../../api/clientsApi'
+// Notifications
+import ActionsNotifications from '../ActionsNotifications';
 
 // ----------------------------------------------------------------------
 
@@ -49,13 +51,18 @@ export default function LoginForm() {
   } = methods;
 
   const onSubmit = async () => {
+    if (form.username !== '' && form.password !== '') {
       getClienteByEmail(form.email, form.password, loadClientHandler, loadErrorHandler);
+    } else {
+      ActionsNotifications.pushInfo('Fill in the fields correctly.');
+    }
   };
 
   async function loadClientHandler(response) {
     if (response.ok) {
         const respuesta = await response.json();
         localStorage.setItem('logClient', JSON.stringify(respuesta));
+        ActionsNotifications.pushSuccess('Logging in ...');
         navigate('/dashboard', { replace: true });
         return;
     }
@@ -67,7 +74,7 @@ export default function LoginForm() {
   }
 
   function loadErrorHandler(error) {
-    console.log(error);
+    ActionsNotifications.pushLoadingError('Wrong username or password');
   }
 
   function fillFields(type, data) {

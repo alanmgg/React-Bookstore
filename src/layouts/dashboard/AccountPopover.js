@@ -7,6 +7,8 @@ import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton } from '@
 import MenuPopover from '../../components/MenuPopover';
 // mocks_
 import account from '../../_mock/account';
+// Notifications
+import ActionsNotifications from '../../components/ActionsNotifications';
 
 // ----------------------------------------------------------------------
 
@@ -44,6 +46,7 @@ export default function AccountPopover() {
     if (localStorage.getItem('logClient')) {
       setclientApi(jsonClient);
     } else {
+      ActionsNotifications.pushInfo('Closing session ...');
       navigate('/login', { replace: true });
     }
   });
@@ -58,6 +61,7 @@ export default function AccountPopover() {
 
   function sessionClose() {
     localStorage.removeItem('logClient');
+    ActionsNotifications.pushInfo('Closing session ...');
     navigate('/login', { replace: true });
   }
 

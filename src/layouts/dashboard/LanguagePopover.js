@@ -11,17 +11,12 @@ const LANGS = [
   {
     value: 'en',
     label: 'English',
-    icon: '/static/icons/ic_flag_en.svg',
+    icon: 'https://img.icons8.com/color/344/usa.png',
   },
   {
-    value: 'de',
-    label: 'German',
-    icon: '/static/icons/ic_flag_de.svg',
-  },
-  {
-    value: 'fr',
-    label: 'French',
-    icon: '/static/icons/ic_flag_fr.svg',
+    value: 'es',
+    label: 'Spanish',
+    icon: 'https://img.icons8.com/color/344/spain-2.png',
   },
 ];
 
@@ -30,12 +25,18 @@ const LANGS = [
 export default function LanguagePopover() {
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const [optionState, setOptionState] = useState('en');
 
   const handleOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (data) => {
+    if (data === 0 && optionState === 'en') {
+      setOptionState('es');
+    } else if (data === 0 && optionState === 'es') {
+      setOptionState('en');
+    }
     setOpen(false);
   };
 
@@ -46,14 +47,14 @@ export default function LanguagePopover() {
         onClick={handleOpen}
         sx={{
           padding: 0,
-          width: 44,
-          height: 44,
+          width: 40,
+          height: 40,
           ...(open && {
             bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.focusOpacity),
           }),
         }}
       >
-        <img src={LANGS[0].icon} alt={LANGS[0].label} />
+        <img src={optionState === 'en' ? LANGS[0].icon : LANGS[1].icon} alt={optionState === 'en' ? LANGS[0].label : LANGS[1].label} />
       </IconButton>
 
       <MenuPopover
@@ -69,7 +70,7 @@ export default function LanguagePopover() {
       >
         <Stack spacing={0.75}>
           {LANGS.map((option) => (
-            <MenuItem key={option.value} selected={option.value === LANGS[0].value} onClick={() => handleClose()}>
+            <MenuItem key={option.value} selected={optionState === 'en' ? option.value === LANGS[0].value : option.value === LANGS[1].value} onClick={(e) => handleClose(e.target.value)}>
               <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
 
               {option.label}
