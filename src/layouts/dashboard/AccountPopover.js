@@ -43,6 +43,8 @@ export default function AccountPopover() {
     const jsonClient = JSON.parse(sessionClient);
     if (localStorage.getItem('logClient')) {
       setclientApi(jsonClient);
+    } else {
+      navigate('/login', { replace: true });
     }
   });
 
