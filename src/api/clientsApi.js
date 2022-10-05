@@ -1,15 +1,15 @@
 import { handleResponse, handleError } from "./apiUtils";
 
 export function getClients(responseHandler = handleResponse, errorHandler = handleError) {
-    const endpointUrl = "http://44.204.17.142/clientes"
-    return fetch(endpointUrl)
+    let endpoint_url = "http://44.204.17.142/clientes"
+    return fetch(endpoint_url)
         .then(responseHandler)
         .catch(errorHandler);
 }
 
 export function getClienteByEmail(email, password, responseHandler = handleResponse, errorHandler = handleError) {
-    const endpointUrl = `http://44.204.17.142/clientes/${email}/${password}`
-    return fetch(endpointUrl)
+    let endpoint_url = "http://44.204.17.142/clientes/" + email + "/" + password
+    return fetch(endpoint_url)
         .then(responseHandler)
         .catch(errorHandler);
 }

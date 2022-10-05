@@ -25,7 +25,7 @@ export default function LoginForm() {
     if (localStorage.getItem('logClient')) {
         navigate('/dashboard', { replace: true });
     }
-  });
+  }, []);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Email must be a valid email address'),
