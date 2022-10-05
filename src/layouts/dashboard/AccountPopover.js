@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton } from '@mui/material';
@@ -31,9 +31,20 @@ const MENU_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
-  const anchorRef = useRef(null);
+  const navigate = useNavigate();
 
+  const anchorRef = useRef(null);
   const [open, setOpen] = useState(null);
+  const [clientApi, setclientApi] = useState(null);
+
+  // eslint-disable-next-line
+  useEffect(() => {
+    const sessionClient = localStorage.getItem('logClient');
+    const jsonClient = JSON.parse(sessionClient);
+    if (localStorage.getItem('logClient')) {
+      setclientApi(jsonClient);
+    }
+  });
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -42,6 +53,11 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(null);
   };
+
+  function sessionClose() {
+    localStorage.removeItem('logClient');
+    navigate('/login', { replace: true });
+  }
 
   return (
     <>
@@ -63,7 +79,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        <Avatar src={clientApi !== null ? `http://44.204.17.142/images/${clientApi.id_image}` : account.photoURL} alt="photoURL" />
       </IconButton>
 
       <MenuPopover
@@ -82,10 +98,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {clientApi !== null ? clientApi.nombre : ""}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+          {clientApi !== null ? clientApi.email : ""}
           </Typography>
         </Box>
 
@@ -101,7 +117,7 @@ export default function AccountPopover() {
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
+        <MenuItem onClick={() => sessionClose()} sx={{ m: 1 }}>
           Logout
         </MenuItem>
       </MenuPopover>

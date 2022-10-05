@@ -1,23 +1,9 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // material
-import {
-  Card,
-  Table,
-  Stack,
-  Avatar,
-  Button,
-  Checkbox,
-  TableRow,
-  TableBody,
-  TableCell,
-  Container,
-  Typography,
-  TableContainer,
-  TablePagination,
-} from '@mui/material';
+import { Card, Table, Stack, Avatar, Button, Checkbox, TableRow, TableBody, TableCell, Container, Typography, TableContainer, TablePagination } from '@mui/material';
 // components
 import Page from '../components/Page';
 import Label from '../components/Label';
@@ -28,12 +14,14 @@ import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashbo
 // mock
 import USERLIST from '../_mock/user';
 
+// import { getClients } from "../api/clientsApi";
+
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
+  { id: 'company', label: 'company', alignRight: false },
+  { id: 'role', label: 'role', alignRight: false },
   { id: 'isVerified', label: 'Verified', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
   { id: '' },
@@ -72,16 +60,13 @@ function applySortFilter(array, comparator, query) {
 
 export default function User() {
   const [page, setPage] = useState(0);
-
   const [order, setOrder] = useState('asc');
-
   const [selected, setSelected] = useState([]);
-
   const [orderBy, setOrderBy] = useState('name');
-
   const [filterName, setFilterName] = useState('');
-
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  // const [users, setUsers] = useState(null);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -132,12 +117,34 @@ export default function User() {
 
   const isUserNotFound = filteredUsers.length === 0;
 
+  // useEffect(() => {
+  //   getClients(loadClientsHandler, loadErrorHandler);
+  // }, []);
+
+  // async function loadClientsHandler(response) {
+  //   if (response.ok) {
+  //       const respuesta = await response.json();
+  //       setUsers(respuesta);
+  //       console.log(respuesta);
+  //       return;
+  //   }
+  //   if (response.status === 400) {
+  //       const error = await response.text();
+  //       throw new Error(error);
+  //   }
+  //   throw new Error("Network response was not ok");
+  // }
+
+  // function loadErrorHandler(error) {
+  //   console.log(error);
+  // }
+
   return (
     <Page title="Bookbay | Users">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Users
           </Typography>
           <Button variant="contained" component={RouterLink} to="#" startIcon={<Iconify icon="eva:plus-fill" />}>
             New User
@@ -176,6 +183,7 @@ export default function User() {
                         <TableCell padding="checkbox">
                           <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, name)} />
                         </TableCell>
+                        
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
                             <Avatar alt={name} src={avatarUrl} />
@@ -184,6 +192,7 @@ export default function User() {
                             </Typography>
                           </Stack>
                         </TableCell>
+                        
                         <TableCell align="left">{company}</TableCell>
                         <TableCell align="left">{role}</TableCell>
                         <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
