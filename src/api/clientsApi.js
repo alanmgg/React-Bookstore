@@ -10,7 +10,9 @@ export function getClients(responseHandler = handleResponse, errorHandler = hand
 export function getClienteByEmail(email, password, responseHandler = handleResponse, errorHandler = handleError) {
     let endpoint_url = "http://44.204.17.142/clientes/" + email + "/" + password
     return fetch(endpoint_url)
-        .then(responseHandler)
+        .then(responseHandler, {
+            headers: { "Content-Security-Policy": "block-all-mixed-content" }
+        })
         .catch(errorHandler);
 }
 
