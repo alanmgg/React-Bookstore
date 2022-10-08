@@ -47,7 +47,6 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const isDesktop = useResponsive('up', 'lg');
   const [clientApi, setclientApi] = useState(null);
 
-  // eslint-disable-next-line
   useEffect(() => {
     const sessionClient = localStorage.getItem('logClient');
     const jsonClient = JSON.parse(sessionClient);
@@ -60,7 +59,6 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
     if (isOpenSidebar) {
       onCloseSidebar();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const renderContent = (
@@ -77,7 +75,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none" component={RouterLink} to="#">
           <AccountStyle>
-            <Avatar src={clientApi !== null ? `http://44.204.17.142/images/${clientApi.id_image}` : account.photoURL} alt="photoURL" />
+            <Avatar src={clientApi !== null ? "https://bookbay.duckdns.org/api/v1/images/" + clientApi.id_image : account.photoURL} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
                 {clientApi !== null ? clientApi.nombre : ""}

@@ -85,7 +85,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={clientApi !== null ? `http://44.204.17.142/images/${clientApi.id_image}` : account.photoURL} alt="photoURL" />
+        <Avatar src={clientApi !== null ? "https://bookbay.duckdns.org/api/v1/images/" + clientApi.id_image : account.photoURL} alt="photoURL" />
       </IconButton>
 
       <MenuPopover

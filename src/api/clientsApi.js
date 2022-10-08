@@ -1,15 +1,17 @@
 import { handleResponse, handleError } from "./apiUtils";
 
 export function getClients(responseHandler = handleResponse, errorHandler = handleError) {
-    let endpoint_url = "http://44.204.17.142/clientes"
-    return fetch(endpoint_url)
+    let endpoint_url = "https://bookbay.duckdns.org/api/v1/clientes"
+    return fetch(endpoint_url, {
+        headers: { "Access-Control-Allow-Origin": "*" },
+        redirect: 'follow'
+    })
         .then(responseHandler)
         .catch(errorHandler);
 }
 
 export function getClienteByEmail(email, password, responseHandler = handleResponse, errorHandler = handleError) {
     let endpoint_url = "https://bookbay.duckdns.org/api/v1/clientes/" + email + "/" + password
-    // let endpoint_url = "http://44.204.17.142/clientes/" + email + "/" + password
     return fetch(endpoint_url, {
         headers: { "Access-Control-Allow-Origin": "*" },
         redirect: 'follow'
