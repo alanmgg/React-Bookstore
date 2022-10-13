@@ -11,11 +11,14 @@ import { LoadingButton } from '@mui/lab';
 import Iconify from '../Iconify';
 import { FormProvider, RHFTextField, RHFCheckbox } from '../hook-form';
 // Api
+import { postAuth } from '../../api/authApi'
 import { getClienteByEmail } from '../../api/clientsApi'
 // Notifications
 import ActionsNotifications from '../ActionsNotifications';
 
 // ----------------------------------------------------------------------
+
+var token = ""
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -24,8 +27,10 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
+    token = ""
+
     if (localStorage.getItem('logClient')) {
-        navigate('/dashboard', { replace: true });
+      navigate('/dashboard', { replace: true });
     }
   }, []);
 
@@ -52,16 +57,34 @@ export default function LoginForm() {
 
   const onSubmit = async () => {
     if (form.username !== '' && form.password !== '') {
-      getClienteByEmail(form.email, form.password, loadClientHandler, loadErrorHandler);
+      postAuth(form.email, form.password, loadAuthHandler, loadErrorHandler);
     } else {
       ActionsNotifications.pushInfo('Fill in the fields correctly.');
     }
   };
 
+  async function loadAuthHandler(response) {
+    if (response.ok) {
+        token = await response.json();
+        console.log(token);
+        getClienteByEmail(form.email, form.password, token, loadClientHandler, loadErrorHandler);
+        return;
+    }
+    if (response.status === 400) {
+        const error = await response.text();
+        throw new Error(error);
+    }
+    throw new Error("Network response was not ok");
+  }
+  
   async function loadClientHandler(response) {
     if (response.ok) {
-        const respuesta = await response.json();
-        localStorage.setItem('logClient', JSON.stringify(respuesta));
+        var logClient = await response.json();
+        var objToken = { "token": token };
+        var finalResult = Object.assign(logClient, objToken);
+
+        console.log(finalResult);
+        localStorage.setItem('logClient', JSON.stringify(finalResult));
         ActionsNotifications.pushSuccess('Logging in ...');
         navigate('/dashboard', { replace: true });
         return;

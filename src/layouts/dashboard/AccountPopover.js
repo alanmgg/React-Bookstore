@@ -46,7 +46,6 @@ export default function AccountPopover() {
     if (localStorage.getItem('logClient')) {
       setclientApi(jsonClient);
     } else {
-      ActionsNotifications.pushInfo('Closing session ...');
       navigate('/login', { replace: true });
     }
   });
@@ -61,7 +60,6 @@ export default function AccountPopover() {
 
   function sessionClose() {
     localStorage.removeItem('logClient');
-    ActionsNotifications.pushInfo('Closing session ...');
     navigate('/login', { replace: true });
   }
 
