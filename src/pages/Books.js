@@ -24,7 +24,7 @@ export default function EcommerceShop() {
   return (
     <Page title="Bookbay | Books">
       <Container>
-        <Typography variant="h4" sx={{ mb: 5 }}>
+        <Typography variant="h3" sx={{ mb: 5 }} style={{ color: '#1890FF', fontWeight: 'bold' }}>
           Books
         </Typography>
 

@@ -68,11 +68,11 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         '& .simplebar-content': { height: 1, display: 'flex', flexDirection: 'column' },
       }}
     >
-      <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
+      <Box sx={{ px: 3, py: 3, display: 'inline-flex' }} style={{ height: '130px' }}>
         <Logo />
       </Box>
 
-      <Box sx={{ mb: 5, mx: 2.5 }}>
+      <Box sx={{ mb: 5, ml: 2.5, mr: 2.5 }}>
         <Link underline="none" component={RouterLink} to="#">
           <AccountStyle>
             <Avatar src={clientApi !== null ? "https://bookbay.duckdns.org/api/v1/images/" + clientApi.id_image : account.photoURL} alt="photoURL" />

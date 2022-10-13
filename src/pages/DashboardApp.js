@@ -27,7 +27,7 @@ export default function DashboardApp() {
   return (
     <Page title="Bookbay">
       <Container maxWidth="xl">
-        <Typography variant="h4" sx={{ mb: 5 }}>
+        <Typography variant="h3" sx={{ mb: 5 }} style={{ color: '#1890FF', fontWeight: 'bold' }}>
           Hi, Welcome back
         </Typography>
 

@@ -8227,6 +8227,11 @@
   "resolved" "https://registry.npmjs.org/reusify/-/reusify-1.0.4.tgz"
   "version" "1.0.4"
 
+"rgt@^1.0.7":
+  "integrity" "sha512-ZviNzOf7HgVSnU0PRRoO9IKCD+7TSFLdy8Q7nFCaFYRY0ei6AfsjM4VOHxI5TsiOSEVculIyZSiTO26ivtkZ4g=="
+  "resolved" "https://registry.npmjs.org/rgt/-/rgt-1.0.7.tgz"
+  "version" "1.0.7"
+
 "rimraf@^3.0.0", "rimraf@^3.0.2":
   "integrity" "sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA=="
   "resolved" "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz"
