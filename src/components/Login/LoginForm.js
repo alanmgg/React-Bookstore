@@ -66,13 +66,18 @@ export default function LoginForm() {
   async function loadAuthHandler(response) {
     if (response.ok) {
         token = await response.json();
-        console.log(token);
         getClienteByEmail(form.email, form.password, token, loadClientHandler, loadErrorHandler);
         return;
     }
     if (response.status === 400) {
         const error = await response.text();
         throw new Error(error);
+    } else if (response.status === 401) {
+      const error = await response.json();
+      ActionsNotifications.pushLoadingError(error.message);
+    } else if (response.status === 404) {
+      const error = await response.json();
+      ActionsNotifications.pushLoadingError(error.detail);
     }
     throw new Error("Network response was not ok");
   }
@@ -83,7 +88,6 @@ export default function LoginForm() {
         var objToken = { "token": token };
         var finalResult = Object.assign(logClient, objToken);
 
-        console.log(finalResult);
         localStorage.setItem('logClient', JSON.stringify(finalResult));
         ActionsNotifications.pushSuccess('Logging in ...');
         navigate('/dashboard', { replace: true });
@@ -92,12 +96,18 @@ export default function LoginForm() {
     if (response.status === 400) {
         const error = await response.text();
         throw new Error(error);
+    } else if (response.status === 401) {
+        const error = await response.json();
+        ActionsNotifications.pushLoadingError(error.message);
+    } else if (response.status === 404) {
+      const error = await response.json();
+      ActionsNotifications.pushLoadingError(error.detail);
     }
     throw new Error("Network response was not ok");
   }
 
   function loadErrorHandler(error) {
-    ActionsNotifications.pushLoadingError('Wrong username or password');
+
   }
 
   function fillFields(type, data) {
