@@ -17,9 +17,9 @@ const navConfig = [
     icon: getIcon('eva:people-fill'),
   },
   {
-    title: 'products',
-    path: '/products',
-    icon: getIcon('eva:shopping-bag-fill'),
+    title: 'books',
+    path: '/books',
+    icon: getIcon('eva:book-open-fill'),
   },
   // {
   //   title: 'blog',

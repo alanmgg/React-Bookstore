@@ -8,7 +8,7 @@ import User from './pages/User';
 import Login from './pages/LoginApi';
 import NotFound from './pages/Page404';
 import Register from './pages/Register';
-import Products from './pages/Products';
+import Books from './pages/Books';
 import DashboardApp from './pages/DashboardApp';
 
 // ----------------------------------------------------------------------
@@ -40,10 +40,10 @@ export default function Router() {
       ],
     },
     {
-      path: '/products',
+      path: '/books',
       element: <DashboardLayout />,
       children: [
-        { path: '', element: <Products /> },
+        { path: '', element: <Books /> },
       ],
     },
     {
