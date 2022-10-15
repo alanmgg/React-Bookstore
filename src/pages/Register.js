@@ -9,7 +9,8 @@ import Page from '../components/Page';
 import Logo from '../components/Logo';
 // sections
 import { RegisterForm } from '../sections/auth/register';
-import AuthSocial from '../sections/auth/AuthSocial';
+// LanguagePopover
+import LanguagePopover from '../layouts/dashboard/LanguagePopover';
 
 // ----------------------------------------------------------------------
 
@@ -69,9 +70,11 @@ export default function Register() {
           {smUp && (
             <Typography variant="body2" sx={{ mt: { md: -2 } }}>
               Already have an account? {''}
-              <Link variant="subtitle2" component={RouterLink} to="/login">
+              <Link variant="subtitle2" component={RouterLink} to="/login" sx={{ pr: 5 }}>
                 Login
               </Link>
+              
+              <LanguagePopover />
             </Typography>
           )}
         </HeaderStyle>
@@ -91,9 +94,7 @@ export default function Register() {
               Get started absolutely free.
             </Typography>
 
-            <Typography sx={{ color: 'text.secondary', mb: 5 }}>Free forever. No credit card needed.</Typography>
-
-            <AuthSocial />
+            <Typography sx={{ color: 'text.secondary', mb: 0 }}>Free forever. No credit card needed.</Typography>
 
             <RegisterForm />
 
@@ -102,12 +103,12 @@ export default function Register() {
               <Link underline="always" color="text.primary" href="#">
                 Terms of Service
               </Link>
-              {''}and{''}
+              {' '}and{' '}
               <Link underline="always" color="text.primary" href="#">
                 Privacy Policy
               </Link>
               .
-            </Typography>
+            </Typography>          
 
             {!smUp && (
               <Typography variant="body2" sx={{ mt: 3, textAlign: 'center' }}>
@@ -117,6 +118,7 @@ export default function Register() {
                 </Link>
               </Typography>
             )}
+
           </ContentStyle>
         </Container>
       </RootStyle>

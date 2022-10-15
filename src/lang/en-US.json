@@ -1,0 +1,12 @@
+{
+    "login.title": "Hi, welcome back!",
+    "login.subtitle": "Sign in to Bookbay",
+    "login.dontAccount": "Don’t have an account?",
+    "login.getStarted": "Get started",
+    "login.enterDetails": "Enter your details below",
+    "login.fieldEmail": "Email address",
+    "login.fieldPassword": "Password",
+    "login.rememberMe": "Remember me",
+    "login.forgotPassword": "Forgot password?",
+    "login.button": "Login"
+}

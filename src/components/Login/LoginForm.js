@@ -15,6 +15,8 @@ import { postAuth } from '../../api/authApi'
 import { getClienteByEmail } from '../../api/clientsApi'
 // Notifications
 import ActionsNotifications from '../ActionsNotifications';
+// Language
+import { FormattedMessage } from 'react-intl';
 
 // ----------------------------------------------------------------------
 
@@ -126,11 +128,11 @@ export default function LoginForm() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <RHFTextField name="email" label="Email address" value={form.email !== '' ? form.email : ''} onChange={(e) => fillFields('email', e.target.value)} />
+        <RHFTextField name="email" label={<FormattedMessage id="login.fieldEmail" defaultMessage="Email address"/>} value={form.email !== '' ? form.email : ''} onChange={(e) => fillFields('email', e.target.value)} />
 
         <RHFTextField
           name="password"
-          label="Password"
+          label={<FormattedMessage id="login.fieldPassword" defaultMessage="Password"/>}
           type={showPassword ? 'text' : 'password'}
           value={form.password !== '' ? form.password : ''}
           onChange={(e) => fillFields('password', e.target.value)}
@@ -147,14 +149,14 @@ export default function LoginForm() {
       </Stack>
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
-        <RHFCheckbox name="remember" label="Remember me" />
+        <RHFCheckbox name="remember" label={<FormattedMessage id="login.rememberMe" defaultMessage="Remember me"/>} />
         <Link variant="subtitle2" underline="hover">
-          Forgot password?
+          <FormattedMessage id="login.forgotPassword" defaultMessage="Forgot password?"/>
         </Link>
       </Stack>
 
       <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
-        Login
+        <FormattedMessage id="login.button" defaultMessage="Login"/>
       </LoadingButton>
     </FormProvider>
   );

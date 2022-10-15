@@ -8,17 +8,22 @@ import { BaseOptionChartStyle } from './components/chart/BaseOptionChart';
 // Toastify
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// Language
+import { LangProvider } from "./context/langContext";
 // ----------------------------------------------------------------------
 
 export default function App() {
   return (
     <>
-      <ThemeProvider>
-        <ScrollToTop />
-        <BaseOptionChartStyle />
-        <Router />
-      </ThemeProvider>
-      <ToastContainer />
+      <LangProvider>
+        <ThemeProvider>
+          <ScrollToTop />
+          <BaseOptionChartStyle />
+          <Router />
+        </ThemeProvider>
+        
+        <ToastContainer />
+      </LangProvider>
     </>
   );
 }

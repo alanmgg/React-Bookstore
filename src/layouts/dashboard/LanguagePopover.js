@@ -1,31 +1,60 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState, useContext, useEffect } from 'react';
 // material
 import { alpha } from '@mui/material/styles';
 import { Box, MenuItem, Stack, IconButton } from '@mui/material';
 // components
 import MenuPopover from '../../components/MenuPopover';
 
+import { langContext } from './../../context/langContext';
+
 // ----------------------------------------------------------------------
 
-const LANGS = [
+const LANGS_EN = [
   {
     value: 'en',
     label: 'English',
-    icon: 'https://img.icons8.com/color/344/usa.png',
+    icon: 'https://cdn-icons-png.flaticon.com/512/4060/4060239.png',
   },
   {
     value: 'es',
     label: 'Spanish',
-    icon: 'https://img.icons8.com/color/344/spain-2.png',
+    icon: 'https://cdn-icons-png.flaticon.com/512/321/321260.png',
+  },
+];
+
+const LANGS_ES = [
+  {
+    value: 'en',
+    label: 'Inglés',
+    icon: 'https://cdn-icons-png.flaticon.com/512/4060/4060239.png',
+  },
+  {
+    value: 'es',
+    label: 'Español',
+    icon: 'https://cdn-icons-png.flaticon.com/512/321/321260.png',
   },
 ];
 
 // ----------------------------------------------------------------------
 
 export default function LanguagePopover() {
+  const lang = useContext(langContext);
+
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [optionState, setOptionState] = useState('en');
+
+  useEffect(() => {
+    const langStorage = localStorage.getItem('lang');
+
+    if (langStorage !== null && langStorage !== undefined) {
+      if (langStorage === 'es-MX') {
+        setOptionState('es');
+      } else {
+        setOptionState('en');
+      }
+    }
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);
@@ -34,8 +63,10 @@ export default function LanguagePopover() {
   const handleClose = (data) => {
     if (data === 0 && optionState === 'en') {
       setOptionState('es');
+      lang.setLanguage('es-MX');
     } else if (data === 0 && optionState === 'es') {
       setOptionState('en');
+      lang.setLanguage('en-US');
     }
     setOpen(false);
   };
@@ -54,7 +85,7 @@ export default function LanguagePopover() {
           }),
         }}
       >
-        <img src={optionState === 'en' ? LANGS[0].icon : LANGS[1].icon} alt={optionState === 'en' ? LANGS[0].label : LANGS[1].label} />
+        <img src={optionState === 'en' ? LANGS_EN[0].icon : LANGS_EN[1].icon} alt={optionState === 'en' ? LANGS_EN[0].label : LANGS_EN[1].label} />
       </IconButton>
 
       <MenuPopover
@@ -69,8 +100,15 @@ export default function LanguagePopover() {
         }}
       >
         <Stack spacing={0.75}>
-          {LANGS.map((option) => (
-            <MenuItem key={option.value} selected={optionState === 'en' ? option.value === LANGS[0].value : option.value === LANGS[1].value} onClick={(e) => handleClose(e.target.value)}>
+          {optionState === 'en' ? LANGS_EN.map((option) => (
+            <MenuItem key={option.value} selected={optionState === 'en' ? option.value === LANGS_EN[0].value : option.value === LANGS_EN[1].value} onClick={(e) => handleClose(e.target.value)}>
+              <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
+
+              {option.label}
+            </MenuItem>
+          )) : 
+          LANGS_ES.map((option) => (
+            <MenuItem key={option.value} selected={optionState === 'en' ? option.value === LANGS_ES[0].value : option.value === LANGS_ES[1].value} onClick={(e) => handleClose(e.target.value)}>
               <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
 
               {option.label}
