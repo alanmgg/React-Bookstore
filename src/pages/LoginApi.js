@@ -104,12 +104,19 @@ export default function Login() {
             <LoginForm />
 
             {!smUp && (
+              <>
               <Typography variant="body2" align="center" sx={{ mt: 3 }}>
                 <FormattedMessage id="login.dontAccount" defaultMessage="Don’t have an account?"/>{' '}
                 <Link variant="subtitle2" component={RouterLink} to="/register">
                   <FormattedMessage id="login.getStarted" defaultMessage="Get started"/>
                 </Link>
+
               </Typography>
+              
+              <Typography variant="body2" sx={{ mt: 2, textAlign: 'center' }}>
+                <LanguagePopover />
+              </Typography>
+              </>
             )}
           </ContentStyle>
         </Container>
