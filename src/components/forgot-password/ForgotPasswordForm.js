@@ -1,15 +1,15 @@
 import * as Yup from 'yup';
 import React, { useEffect, useState } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // form
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
-import { Link, Stack, IconButton, InputAdornment } from '@mui/material';
+import { Stack, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../Iconify';
-import { FormProvider, RHFTextField, RHFCheckbox } from '../hook-form';
+import { FormProvider, RHFTextField } from '../hook-form';
 // Api
 import { postAuth } from '../../api/authApi'
 import { getClienteByEmail } from '../../api/clientsApi'
@@ -22,7 +22,7 @@ import { FormattedMessage } from 'react-intl';
 
 var token = ""
 
-export default function LoginForm() {
+export default function ForgotPasswordForm() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({ email: '', password: '' });
@@ -146,16 +146,26 @@ export default function LoginForm() {
             ),
           }}
         />
+
+        <RHFTextField
+          name="password"
+          label={<FormattedMessage id="login.fieldPassword" defaultMessage="Password"/>}
+          type={showPassword ? 'text' : 'password'}
+          value={form.password !== '' ? form.password : ''}
+          onChange={(e) => fillFields('password', e.target.value)}
+          InputProps={{
+            endAdornment: ( 
+              <InputAdornment position="end">
+                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
       </Stack>
 
-      <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
-        <RHFCheckbox name="remember" label={<FormattedMessage id="login.rememberMe" defaultMessage="Remember me"/>} />
-        <Link variant="subtitle2" component={RouterLink} underline="hover" to="/forgot-password">
-          <FormattedMessage id="login.forgotPassword" defaultMessage="Forgot password?"/>
-        </Link>
-      </Stack>
-
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+      <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting} sx={{ my: 2 }}>
         <FormattedMessage id="login.button" defaultMessage="Login"/>
       </LoadingButton>
     </FormProvider>

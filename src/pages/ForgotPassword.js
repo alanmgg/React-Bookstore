@@ -8,7 +8,7 @@ import useResponsive from '../hooks/useResponsive';
 import Page from '../components/Page';
 import Logo from '../components/Logo';
 // sections
-import LoginForm from '../components/Login/LoginForm';
+import ForgotPasswordForm from '../components/forgot-password/ForgotPasswordForm';
 // LanguagePopover
 import LanguagePopover from '../layouts/dashboard/LanguagePopover';
 // Language
@@ -59,13 +59,13 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function Login() {
+export default function ForgotPassword() {
   const smUp = useResponsive('up', 'sm');
 
   const mdUp = useResponsive('up', 'md');
 
   return (
-    <Page title="Login">
+    <Page title="Forgot password">
       <RootStyle>
         <HeaderStyle>
           <Logo />
@@ -87,7 +87,7 @@ export default function Login() {
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
               <FormattedMessage id="login.title" defaultMessage="Hi, welcome back"/>
             </Typography>
-            <img src="/static/illustrations/login.png" alt="login" />
+            <img src="/static/illustrations/illustration_login.png" alt="login" />
           </SectionStyle>
         )}
 
@@ -101,7 +101,7 @@ export default function Login() {
               <FormattedMessage id="login.enterDetails" defaultMessage="Enter your details below"/>
             </Typography>
 
-            <LoginForm />
+            <ForgotPasswordForm />
 
             {!smUp && (
               <>
