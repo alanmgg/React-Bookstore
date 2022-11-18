@@ -1,4 +1,10 @@
 {
+    "textfield.name": "Name's ",
+    "textfield.last": "Last name ",
+    "textfield.optional": "Mother's last name (optional)",
+    "textfield.add": "Email address ",
+    "textfield.num": "Phone number",
+
     "login.title": "Hi, welcome back!",
     "login.subtitle": "Sign in to Bookbay",
     "login.dontAccount": "Don’t have an account?",
@@ -8,5 +14,15 @@
     "login.fieldPassword": "Password",
     "login.rememberMe": "Remember me",
     "login.forgotPassword": "Forgot password?",
-    "login.button": "Login"
+    "login.button": "Login",
+    
+    "register.new": "ALready have an account? ",
+    "register.new2": "Login",
+    "register.title": "Join to the community!",
+    "register.subtitle": "Create a new account",
+    "register.free": "It's totally free",
+    "register.privacy": "By registering you agree to the ",
+    "register.terms": "Terms of services ",
+    "register.and": " and ",
+    "register.poli": "Privacy Policy"
 }

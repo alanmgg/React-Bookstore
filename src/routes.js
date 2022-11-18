@@ -7,7 +7,7 @@ import LogoOnlyLayout from './layouts/LogoOnlyLayout';
 import User from './pages/User';
 import Login from './pages/LoginApi';
 import NotFound from './pages/Page404';
-import Register from './pages/Register';
+import Register from './pages/RegisterApi';
 import ForgotPassword from './pages/ForgotPassword';
 import Books from './pages/Books';
 import DashboardApp from './pages/DashboardApp';

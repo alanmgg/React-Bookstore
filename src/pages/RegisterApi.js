@@ -8,7 +8,7 @@ import useResponsive from '../hooks/useResponsive';
 import Page from '../components/Page';
 import Logo from '../components/Logo';
 // sections
-import LoginForm from '../components/login/LoginForm';
+import RegisterForm from '../components/register/RegisterForm';
 // LanguagePopover
 import LanguagePopover from '../layouts/dashboard/LanguagePopover';
 // Language
@@ -59,24 +59,23 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function Login() {
+export default function Register() {
   const smUp = useResponsive('up', 'sm');
 
   const mdUp = useResponsive('up', 'md');
 
   return (
-    <Page title="Login">
+    <Page title="Register">
       <RootStyle>
         <HeaderStyle>
           <Logo />
-
           {smUp && (
             <Typography variant="body2" sx={{ mt: { md: -2 } }}>
-              <FormattedMessage id="login.dontAccount" defaultMessage="Don’t have an account?"/> {''}
-              <Link variant="subtitle2" component={RouterLink} to="/register" sx={{ pr: 5 }}>
-                <FormattedMessage id="login.getStarted" defaultMessage="Get started"/>
+                <FormattedMessage id="register.new" defaultMessage="Already have an account? "/>
+              <Link variant="subtitle2" component={RouterLink} to="/login" sx={{ pr: 5 }}>
+               <FormattedMessage id="register.new2" defaultMessage="Login "/>
               </Link>
-
+              
               <LanguagePopover />
             </Typography>
           )}
@@ -84,40 +83,53 @@ export default function Login() {
 
         {mdUp && (
           <SectionStyle>
-            <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              <FormattedMessage id="login.title" defaultMessage="Hi, welcome back"/>
+            <Typography variant="h3" sx={{ px: 5, mt: 0, mb: 5 }}>
+                <FormattedMessage id="register.title" defaultMessage="Join to the community!"/>
             </Typography>
-            <img src="/static/illustrations/login.png" alt="login" />
+            <img alt="register" src="/static/illustrations/register.png" />
           </SectionStyle>
         )}
 
-        <Container maxWidth="sm">
+        <Container>
           <ContentStyle>
             <Typography variant="h4" gutterBottom>
-              <FormattedMessage id="login.subtitle" defaultMessage="Sign in to Bookbay"/>
+              <FormattedMessage id="register.subtitle" defaultMessage="Create a new account"/>
             </Typography>
 
             <Typography sx={{ color: 'text.secondary', mb: 5 }}>
-              <FormattedMessage id="login.enterDetails" defaultMessage="Enter your details below"/>
+              <FormattedMessage id="register.free" defaultMessage="It's totally free"/>
             </Typography>
 
-            <LoginForm />
+            <RegisterForm />
+
+            <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
+              <FormattedMessage id="register.privacy" defaultMessage="By registering you agree to the "/>
+              <Link underline="always" color="text.primary" href="#">
+                <FormattedMessage id="register.terms" defaultMessage="Terms of services "/>
+              </Link>
+                <FormattedMessage id="register.and" defaultMessage=" and "/>
+              <Link underline="always" color="text.primary" href="#">
+                <FormattedMessage id="register.poli" defaultMessage="Privacy Policy "/>
+              </Link>
+              .
+            </Typography>          
 
             {!smUp && (
               <>
-              <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-                <FormattedMessage id="login.dontAccount" defaultMessage="Don’t have an account?"/>{' '}
-                <Link variant="subtitle2" component={RouterLink} to="/register">
-                  <FormattedMessage id="login.getStarted" defaultMessage="Get started"/>
-                </Link>
+                <Typography variant="body2" sx={{ mt: 3, textAlign: 'center' }}>
+                  Already have an account?{' '}
+                  <Link variant="subtitle2" to="/login" component={RouterLink}>
+                    Login
+                  </Link>
 
-              </Typography>
-              
-              <Typography variant="body2" sx={{ mt: 2, textAlign: 'center' }}>
-                <LanguagePopover />
-              </Typography>
+                </Typography>
+
+                <Typography variant="body2" sx={{ mt: 2, textAlign: 'center' }}>
+                  <LanguagePopover />
+                </Typography>
               </>
             )}
+
           </ContentStyle>
         </Container>
       </RootStyle>
