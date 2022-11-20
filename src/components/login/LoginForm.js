@@ -128,11 +128,11 @@ export default function LoginForm() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <RHFTextField name="email" label={<FormattedMessage id="login.fieldEmail" defaultMessage="Email address"/>} value={form.email !== '' ? form.email : ''} onChange={(e) => fillFields('email', e.target.value)} />
+        <RHFTextField name="email" label={<FormattedMessage id="textfield.email" defaultMessage="Email address"/>} value={form.email !== '' ? form.email : ''} onChange={(e) => fillFields('email', e.target.value)} />
 
         <RHFTextField
           name="password"
-          label={<FormattedMessage id="login.fieldPassword" defaultMessage="Password"/>}
+          label={<FormattedMessage id="textfield.password" defaultMessage="Password"/>}
           type={showPassword ? 'text' : 'password'}
           value={form.password !== '' ? form.password : ''}
           onChange={(e) => fillFields('password', e.target.value)}

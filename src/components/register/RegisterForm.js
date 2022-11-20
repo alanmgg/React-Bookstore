@@ -88,23 +88,23 @@ export default function RegisterForm() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <RHFTextField name="username" label={<FormattedMessage id="textfield.name" defaultMessage="Name's "/>} style={{ zIndex: 10 }} value={form.username !== '' ? form.username : ''} onChange={(e) => fillFields('username', e.target.value)}/>
+        <RHFTextField name="username" label={<FormattedMessage id="textfield.names" defaultMessage="Names"/>} style={{ zIndex: 10 }} value={form.username !== '' ? form.username : ''} onChange={(e) => fillFields('username', e.target.value)}/>
 
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
             <RHFTextField name="apPaterno" label={<FormattedMessage id="textfield.last" defaultMessage="Last name"/>}  value={form.apPaterno !== '' ? form.apPaterno : ''} onChange={(e) => fillFields('apPaterno', e.target.value)}/>
-            <RHFTextField name="apMaterno" label={<FormattedMessage id="textfield.optional" defaultMessage="Mother's last name (optional) "/>} value={form.apMaterno !== '' ? form.apMaterno : ''} onChange={(e) => fillFields('apMaterno', e.target.value)}/>
+            <RHFTextField name="apMaterno" label={<FormattedMessage id="textfield.mothers" defaultMessage="Mother's last name (optional)"/>} value={form.apMaterno !== '' ? form.apMaterno : ''} onChange={(e) => fillFields('apMaterno', e.target.value)}/>
         </Stack>
         
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <RHFTextField name="email" label={<FormattedMessage id="textfield.add" defaultMessage="Email address"/>}  value={form.email !== '' ? form.email : ''} onChange={(e) => fillFields('email', e.target.value)}/>
-            <RHFTextField name="phone" label={<FormattedMessage id="textfield.num" defaultMessage="Phone number"/>}  value={form.phone !== '' ? form.phone : ''} onChange={(e) => fillFields('phone', e.target.value)}/>
+            <RHFTextField name="email" label={<FormattedMessage id="textfield.email" defaultMessage="Email address"/>}  value={form.email !== '' ? form.email : ''} onChange={(e) => fillFields('email', e.target.value)}/>
+            <RHFTextField name="phone" label={<FormattedMessage id="textfield.phone" defaultMessage="Phone number"/>}  value={form.phone !== '' ? form.phone : ''} onChange={(e) => fillFields('phone', e.target.value)}/>
         </Stack>
 
-        <RHFTextField name="direction" label="Direction" value={form.direction !== '' ? form.direction : ''} onChange={(e) => fillFields('direction', e.target.value)}/>
+        <RHFTextField name="direction" label={<FormattedMessage id="textfield.direction" defaultMessage="Direction"/>} value={form.direction !== '' ? form.direction : ''} onChange={(e) => fillFields('direction', e.target.value)}/>
 
         <RHFTextField
           name="password"
-          label="Password"
+          label={<FormattedMessage id="textfield.password" defaultMessage="Password"/>}
           type={showPassword ? 'text' : 'password'}
           value={form.password !== '' ? form.password : ''} 
           onChange={(e) => fillFields('password', e.target.value)}
@@ -120,7 +120,7 @@ export default function RegisterForm() {
         />
 
         <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
-          Register
+          <FormattedMessage id="register.button" defaultMessage="Register"/>
         </LoadingButton>
       </Stack>
     </FormProvider>

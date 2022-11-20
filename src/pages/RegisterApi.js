@@ -71,9 +71,9 @@ export default function Register() {
           <Logo />
           {smUp && (
             <Typography variant="body2" sx={{ mt: { md: -2 } }}>
-                <FormattedMessage id="register.new" defaultMessage="Already have an account? "/>
+                <FormattedMessage id="register.alreadyAccount" defaultMessage="Already have an account? "/>
               <Link variant="subtitle2" component={RouterLink} to="/login" sx={{ pr: 5 }}>
-               <FormattedMessage id="register.new2" defaultMessage="Login "/>
+               <FormattedMessage id="register.login" defaultMessage="Login"/>
               </Link>
               
               <LanguagePopover />
@@ -109,7 +109,7 @@ export default function Register() {
               </Link>
                 <FormattedMessage id="register.and" defaultMessage=" and "/>
               <Link underline="always" color="text.primary" href="#">
-                <FormattedMessage id="register.poli" defaultMessage="Privacy Policy "/>
+                <FormattedMessage id="register.policy" defaultMessage="Privacy Policy "/>
               </Link>
               .
             </Typography>          
