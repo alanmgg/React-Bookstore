@@ -8,6 +8,7 @@ import User from './pages/User';
 import Login from './pages/LoginApi';
 import NotFound from './pages/Page404';
 import Register from './pages/RegisterApi';
+import TermsServices from './pages/TermsofServices';
 import ForgotPassword from './pages/ForgotPassword';
 import Books from './pages/Books';
 import DashboardApp from './pages/DashboardApp';
@@ -58,6 +59,13 @@ export default function Router() {
     {
       path: 'forgot-password',
       element: <ForgotPassword />,
+    },
+    {
+      path: 'terms-of-services',
+      element: <LogoOnlyLayout />,
+      children: [
+        { path: '', element: <TermsServices /> },
+      ]
     },
     {
       path: '/',

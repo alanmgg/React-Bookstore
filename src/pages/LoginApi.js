@@ -103,6 +103,18 @@ export default function Login() {
 
             <LoginForm />
 
+            <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
+              <FormattedMessage id="register.privacy" defaultMessage="By registering you agree to the "/>
+              <Link underline="always" color="text.primary" href="/terms-of-services">
+                <FormattedMessage id="register.terms" defaultMessage="Terms of services "/>
+              </Link>
+                <FormattedMessage id="register.and" defaultMessage=" and "/>
+              <Link underline="always" color="text.primary" href="#">
+                <FormattedMessage id="register.policy" defaultMessage="Privacy Policy "/>
+              </Link>
+              .
+            </Typography>
+
             {!smUp && (
               <>
               <Typography variant="body2" align="center" sx={{ mt: 3 }}>
