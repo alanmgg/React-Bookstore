@@ -29,29 +29,28 @@ export function getClienteByEmail(email, password, token, responseHandler = hand
 //         .catch(errorHandler);
 // }
 
-// export function createUser(form, responseHandler = handleResponse, errorHandler = handleError) {
-//     let endpoint_url = "http://192.168.0.56:8018/users"
+export function createCliente(form, responseHandler = handleResponse, errorHandler = handleError) {
+    let endpoint_url = "https://bookbay.duckdns.org/api/v1/clientes"
     
-//     const text_config = { 
-//         "username": form.username, 
-//         "first_name": form.first_name, 
-//         "last_name": form.last_name,
-//         "password": form.password, 
-//         "description": form.description, 
-//         "status": "active",
-//         "role": form.role,
-//         "email": form.email,
-//         "phone": form.phone,
-//         "job": form.job }
+    const text_config = { 
+        "nombre": form.username, 
+        "ap_paterno": form.apPaterno, 
+        "ap_materno": form.apMaterno,
+        "email": form.email,
+        "telefono": form.phone,
+        "direccion": form.direction, 
+        "password": form.password, 
+        "role": form.role,
+        "id_image": form.idImage }
 
-//     return fetch(endpoint_url, {
-//         method: "POST",
-//         headers: { "content-type": "application/json" },
-//         body: JSON.stringify(text_config)
-//       })
-//         .then(responseHandler)
-//         .catch(errorHandler);
-// }
+    return fetch(endpoint_url, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(text_config)
+      })
+        .then(responseHandler)
+        .catch(errorHandler);
+}
 
 // export function deleteUser(idUser, responseHandler = handleResponse, errorHandler = handleError) {
 //     let endpoint_url = "http://192.168.0.56:8018/users/" + idUser

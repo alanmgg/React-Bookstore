@@ -10,6 +10,10 @@ import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../Iconify';
 import { FormProvider, RHFTextField } from '../hook-form';
+// Notifications
+import ActionsNotifications from '../ActionsNotifications';
+// Api
+import { createCliente } from '../../api/clientsApi'
 // Language
 import { FormattedMessage } from 'react-intl';
 
@@ -19,7 +23,7 @@ export default function RegisterForm() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-  const [form, setForm] = useState({ username: '', apPaterno: '', apMaterno: '', email: '', phone: '', direction: '', password: '', role: 'user' });
+  const [form, setForm] = useState({ username: '', apPaterno: '', apMaterno: '', email: '', phone: '', direction: '', password: '', role: 'user', idImage: 1 });
 
   const RegisterSchema = Yup.object().shape({
     username: Yup.string(),
@@ -53,13 +57,36 @@ export default function RegisterForm() {
 
   const onSubmit = async () => {
     // navigate('/dashboard', { replace: true });
-    console.log(form);
+    createCliente(form, loadClientHandler, loadErrorHandler);
   };
+
+  async function loadClientHandler(response) {
+    if (response.ok) {
+        var logClient = await response.json();
+        ActionsNotifications.pushSuccess('Registered user ...');
+        setForm({ username: '', apPaterno: '', apMaterno: '', email: '', phone: '', direction: '', password: '', role: 'user', idImage: 1 });
+        return;
+    }
+    if (response.status === 400) {
+        const error = await response.text();
+        throw new Error(error);
+    } else if (response.status === 401) {
+        const error = await response.json();
+        ActionsNotifications.pushLoadingError(error.message);
+    } else if (response.status === 404) {
+      const error = await response.json();
+      ActionsNotifications.pushLoadingError(error.detail);
+    }
+    throw new Error("Network response was not ok");
+  }
+
+  function loadErrorHandler(error) {
+
+  }
 
   function fillFields(type, data) {
     switch (type) {
       case 'username':
-        console.log('Imprimo hola');
         setForm({ ...form, username: data });
         break;
     case 'apPaterno':

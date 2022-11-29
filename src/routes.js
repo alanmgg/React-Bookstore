@@ -12,7 +12,7 @@ import TermsServices from './pages/TermsofServices';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import ForgotPassword from './pages/ForgotPassword';
 import Books from './pages/Books';
-import DashboardApp from './pages/DashboardApp';
+import HomeApp from './pages/Home';
 
 // ----------------------------------------------------------------------
 
@@ -29,10 +29,10 @@ export default function Router() {
     //   ],
     // },
     {
-      path: '/dashboard',
+      path: '/home',
       element: <DashboardLayout />,
       children: [
-        { path: '', element: <DashboardApp /> },
+        { path: '', element: <HomeApp /> },
       ],
     },
     {
@@ -79,7 +79,7 @@ export default function Router() {
       path: '/',
       element: <LogoOnlyLayout />,
       children: [
-        { path: '/', element: <Navigate to="/dashboard" /> },
+        { path: '/', element: <Navigate to="/home" /> },
         { path: '404', element: <NotFound /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],
