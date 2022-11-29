@@ -108,7 +108,7 @@ export default function Register() {
                 <FormattedMessage id="register.terms" defaultMessage="Terms of services "/>
               </Link>
                 <FormattedMessage id="register.and" defaultMessage=" and "/>
-              <Link underline="always" color="text.primary" href="#">
+              <Link underline="always" color="text.primary" href="/privacy-policy">
                 <FormattedMessage id="register.policy" defaultMessage="Privacy Policy "/>
               </Link>
               .

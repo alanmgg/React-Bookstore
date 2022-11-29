@@ -9,6 +9,7 @@ import Login from './pages/LoginApi';
 import NotFound from './pages/Page404';
 import Register from './pages/RegisterApi';
 import TermsServices from './pages/TermsofServices';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import ForgotPassword from './pages/ForgotPassword';
 import Books from './pages/Books';
 import DashboardApp from './pages/DashboardApp';
@@ -65,6 +66,13 @@ export default function Router() {
       element: <LogoOnlyLayout />,
       children: [
         { path: '', element: <TermsServices /> },
+      ]
+    },
+    {
+      path: 'privacy-policy',
+      element: <LogoOnlyLayout />,
+      children: [
+        { path: '', element: <PrivacyPolicy /> },
       ]
     },
     {
