@@ -32,7 +32,7 @@ export default function ForgotPasswordForm() {
     token = ""
 
     if (localStorage.getItem('logClient')) {
-      navigate('/dashboard', { replace: true });
+      navigate('/home', { replace: true });
     }
   }, []);
 
@@ -92,7 +92,7 @@ export default function ForgotPasswordForm() {
 
         localStorage.setItem('logClient', JSON.stringify(finalResult));
         ActionsNotifications.pushSuccess('Logging in ...');
-        navigate('/dashboard', { replace: true });
+        navigate('/home', { replace: true });
         return;
     }
     if (response.status === 400) {

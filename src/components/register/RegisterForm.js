@@ -56,7 +56,6 @@ export default function RegisterForm() {
   } = methods;
 
   const onSubmit = async () => {
-    // navigate('/dashboard', { replace: true });
     createCliente(form, loadClientHandler, loadErrorHandler);
   };
 

@@ -32,7 +32,7 @@ export default function LoginForm() {
     token = ""
 
     if (localStorage.getItem('logClient')) {
-      navigate('/dashboard', { replace: true });
+      navigate('/home', { replace: true });
     }
   }, []);
 
@@ -92,7 +92,7 @@ export default function LoginForm() {
 
         localStorage.setItem('logClient', JSON.stringify(finalResult));
         ActionsNotifications.pushSuccess('Logging in ...');
-        navigate('/dashboard', { replace: true });
+        navigate('/home', { replace: true });
         return;
     }
     if (response.status === 400) {
@@ -128,7 +128,7 @@ export default function LoginForm() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <RHFTextField name="email" label={<FormattedMessage id="textfield.email" defaultMessage="Email address"/>} value={form.email !== '' ? form.email : ''} onChange={(e) => fillFields('email', e.target.value)} />
+        <RHFTextField name="email" label={<FormattedMessage id="textfield.email" defaultMessage="Email address"/>} value={form.email !== '' ? form.email : ''} onChange={(e) => fillFields('email', e.target.value)} sx={{ zIndex: 10 }} />
 
         <RHFTextField
           name="password"
