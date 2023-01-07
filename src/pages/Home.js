@@ -17,7 +17,7 @@ export default function HomeApp() {
   const [publicidad, setPublicidad] = useState("6");
   
   useEffect(() => {
-    setTimeout(() => {  changePublicidad(); }, 15000);
+    setTimeout(() => {  changePublicidad(); }, 5000);
   });
 
   function changePublicidad (){

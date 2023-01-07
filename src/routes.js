@@ -12,6 +12,7 @@ import TermsServices from './pages/TermsofServices';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import ForgotPassword from './pages/ForgotPassword';
 import Books from './pages/Books';
+import SaveBook from './pages/SaveBook';
 import HomeApp from './pages/Home';
 
 // ----------------------------------------------------------------------
@@ -47,6 +48,7 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { path: '', element: <Books /> },
+        { path: 'save', element: <SaveBook /> },
       ],
     },
     {
