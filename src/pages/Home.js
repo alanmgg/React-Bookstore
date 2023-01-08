@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography, Card, CardActions, CardContent } from '@mui/material';
+import { Grid, Container, Typography, Card, CardContent } from '@mui/material';
 // components
 import Page from '../components/Page';
 // sections
