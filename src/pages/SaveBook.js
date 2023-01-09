@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // @mui
 import { Grid, Container, Typography, Card, Button, CardContent, TextField, Select, MenuItem, Skeleton, Box } from '@mui/material';
@@ -7,7 +7,7 @@ import PhotoCameraRoundedIcon from '@mui/icons-material/PhotoCameraRounded';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import Page from '../components/Page';
 // Api
-import { savePortada, updatePathImage } from '../api/booksApi'
+import { savePortada, savePortadaBooks, updatePathImage, createPathImage, createLibro  } from '../api/booksApi';
 // Notifications
 import ActionsNotifications from '../components/ActionsNotifications';
 
@@ -20,6 +20,15 @@ export default function SaveBook() {
     const [formAuthor, setFormAuthor] = useState({ nameAuthor: '', apPaterno: '', apMaterno: '', countryAuthor: '' });
     const [formEditorial, setFormEditorial] = useState({ nameEditorial: '', countryEditorial: '' });
     const [formCategory, setFormCategory] = useState({ type: '' });
+    const [formPath, setFormPath] = useState({ path: '' });
+    const [token, setToken] = useState("");
+
+    useEffect(() => {
+        if (token === "") {
+            var objectJson = JSON.parse(localStorage.getItem('logClient'));
+            setToken(objectJson.token);
+        }
+    }, []);
 
     const sleep = ms => new Promise(
         resolve => setTimeout(resolve, ms)
@@ -29,19 +38,38 @@ export default function SaveBook() {
         savePortada(file[0], loadPortadaHandler, loadErrorHandler);
         updatePathImage(file[0].name, loadPathHandler, loadErrorHandler);
         setPicture(file[0]);
+        setFormPath({ ...formPath, path: "/images/books/" + file[0].name });
         await sleep(1000);
         setPath("https://bookbay.duckdns.org/api/v1/images/2");
-        ActionsNotifications.pushSuccess('Cover successfully uploaded');
     }
 
-    function submitData() {
-        console.log(formBook);
-        console.log(formAuthor);
-        console.log(formEditorial);
-        console.log(formCategory);
+    async function submitData() {
+        savePortadaBooks(picture, loadPortadaBookHandler, loadErrorHandler);
+        createPathImage(formPath, loadPathHandler, loadErrorHandler);
+        await sleep(1000);
+        createLibro(token, formBook, formAuthor, formEditorial, formCategory, formPath, loadBookHandler, loadErrorHandler);
     }
 
     async function loadPortadaHandler(response) {
+        if (response.ok) {
+            ActionsNotifications.pushSuccess('Cover successfully uploaded');
+            res = await response.json();
+            return;
+        }
+        if (response.status === 400) {
+            const error = await response.text();
+            throw new Error(error);
+        } else if (response.status === 401) {
+          const error = await response.json();
+          ActionsNotifications.pushLoadingError(error.message);
+        } else if (response.status === 404) {
+          const error = await response.json();
+          ActionsNotifications.pushLoadingError(error.detail);
+        }
+        throw new Error("Network response was not ok");
+    }
+    
+    async function loadPortadaBookHandler(response) {
         if (response.ok) {
             res = await response.json();
             return;
@@ -61,6 +89,32 @@ export default function SaveBook() {
     
     async function loadPathHandler(response) {
         if (response.ok) {
+            res = await response.json();
+            return;
+        }
+        if (response.status === 400) {
+            const error = await response.text();
+            throw new Error(error);
+        } else if (response.status === 401) {
+          const error = await response.json();
+          ActionsNotifications.pushLoadingError(error.message);
+        } else if (response.status === 404) {
+          const error = await response.json();
+          ActionsNotifications.pushLoadingError(error.detail);
+        }
+        throw new Error("Network response was not ok");
+    }
+
+    async function loadBookHandler(response) {
+        if (response.ok) {
+            ActionsNotifications.pushSuccess('Book created successfully');
+            setPath(null);
+            setPicture(null);
+            setFormBook({ nameBook: '', isbn10: 0, isbn13: 0, year: 0, pages: 0, price: 0, stock: 0, state: '', resenia: '' });
+            setFormAuthor({ nameAuthor: '', apPaterno: '', apMaterno: '', countryAuthor: '' });
+            setFormEditorial({ nameEditorial: '', countryEditorial: '' });
+            setFormCategory({ type: '' });
+            setFormPath({ path: '' });
             res = await response.json();
             return;
         }
@@ -186,7 +240,7 @@ export default function SaveBook() {
                                     Libro
                                 </Typography>
 
-                                <TextField fullWidth label="Name" color="secondary" sx={{ mb: 2 }} value={formBook.name !== '' ? formBook.name : ''} onChange={(e) => fillFields('nameBook', e.target.value)}/>
+                                <TextField fullWidth label="Name" color="secondary" sx={{ mb: 2 }} value={formBook.nameBook !== '' ? formBook.nameBook : ''} onChange={(e) => fillFields('nameBook', e.target.value)}/>
                                 <TextField label="ISBN-10" color="secondary" type="number" sx={{ mb: 2, mr: 3 }} value={formBook.isbn10 !== 0 ? formBook.isbn10 : ''} onChange={(e) => fillFields('isbn10', e.target.value)}/>
                                 <TextField label="ISBN-13" color="secondary" type="number" sx={{ mb: 2, mr: 3 }} value={formBook.isbn13 !== 0 ? formBook.isbn13 : ''} onChange={(e) => fillFields('isbn13', e.target.value)}/>
                                 <TextField label="Year" color="secondary" type="number" sx={{ mb: 2 }} value={formBook.year !== 0 ? formBook.year : ''} onChange={(e) => fillFields('year', e.target.value)}/>
