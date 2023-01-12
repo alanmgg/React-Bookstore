@@ -13,6 +13,8 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import ForgotPassword from './pages/ForgotPassword';
 import Books from './pages/Books';
 import SaveBook from './pages/SaveBook';
+import SeeBook from './pages/SeeBook';
+import SeeClient from './pages/SeeClient';
 import HomeApp from './pages/Home';
 
 // ----------------------------------------------------------------------
@@ -49,6 +51,14 @@ export default function Router() {
       children: [
         { path: '', element: <Books /> },
         { path: 'save', element: <SaveBook /> },
+        { path: ':bookId', element: <SeeBook /> },
+      ],
+    },
+    {
+      path: '/profile',
+      element: <DashboardLayout />,
+      children: [
+        { path: '', element: <SeeClient /> },
       ],
     },
     {
@@ -83,12 +93,12 @@ export default function Router() {
       children: [
         { path: '/', element: <Navigate to="/home" /> },
         { path: '404', element: <NotFound /> },
-        { path: '*', element: <Navigate to="/404" /> },
+        // { path: '*', element: <Navigate to="/404" /> },
       ],
     },
-    {
-      path: '*',
-      element: <Navigate to="/404" replace />,
-    },
+    // {
+    //   path: '*',
+    //   element: <Navigate to="/404" replace />,
+    // },
   ]);
 }

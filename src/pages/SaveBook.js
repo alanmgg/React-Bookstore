@@ -54,8 +54,8 @@ export default function SaveBook() {
 
     async function loadPortadaHandler(response) {
         if (response.ok) {
+            var res = await response.json();
             ActionsNotifications.pushSuccess('Cover successfully uploaded');
-            res = await response.json();
             return;
         }
         if (response.status === 400) {
@@ -73,7 +73,7 @@ export default function SaveBook() {
     
     async function loadPortadaBookHandler(response) {
         if (response.ok) {
-            res = await response.json();
+            var res = await response.json();
             return;
         }
         if (response.status === 400) {
@@ -91,7 +91,7 @@ export default function SaveBook() {
     
     async function loadPathHandler(response) {
         if (response.ok) {
-            res = await response.json();
+            var res = await response.json();
             return;
         }
         if (response.status === 400) {
@@ -109,6 +109,7 @@ export default function SaveBook() {
 
     async function loadBookHandler(response) {
         if (response.ok) {
+            var res = await response.json();
             ActionsNotifications.pushSuccess('Book created successfully');
             setPath(null);
             setPicture(null);
@@ -117,7 +118,6 @@ export default function SaveBook() {
             setFormEditorial({ nameEditorial: '', countryEditorial: '' });
             setFormCategory({ type: '' });
             setFormPath({ path: '' });
-            res = await response.json();
             return;
         }
         if (response.status === 400) {

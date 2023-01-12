@@ -11,6 +11,17 @@ export function getBooks(token, responseHandler = handleResponse, errorHandler =
         .catch(errorHandler);
 }
 
+export function getBook(token, bookId, responseHandler = handleResponse, errorHandler = handleError) {
+    let endpoint_url = "https://bookbay.duckdns.org/api/v1/libros/" + bookId
+    return fetch(endpoint_url, {
+        method: 'GET',
+        headers: { "Authorization": "Bearer " + token },
+        redirect: 'follow'
+    })
+        .then(responseHandler)
+        .catch(errorHandler);
+}
+
 export function savePortada(file, responseHandler = handleResponse, errorHandler = handleError) {
     let endpoint_url = "https://bookbay.duckdns.org/api/v1/upload-images-before"
     var data = new FormData()

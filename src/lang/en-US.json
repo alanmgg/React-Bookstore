@@ -16,6 +16,7 @@
     "textfield.bookreview": "Book Review",
     "textfield.country": "Country",
     "textfield.type": "Type",
+    "textfield.role": "Role",
 
     "buttons.backtohome": "Back to home",
     "buttons.newbook": "New book",
@@ -25,6 +26,10 @@
 
     "sidebar.home": "Home",
     "sidebar.books": "Books",
+
+    "account.home": "Home",
+    "account.profile": "Profile",
+    "account.logout": "Logout",
 
     "login.title": "Hi, welcome back!",
     "login.subtitle": "Sign in to Bookbay",
@@ -111,5 +116,9 @@
     "newbook.book": "Book",
     "newbook.author": "Author",
     "newbook.publisher": "Publisher",
-    "newbook.category": "Category"
+    "newbook.category": "Category",
+
+    "seebook.title": "Book data",
+    
+    "profile.title": "Profile"
 }

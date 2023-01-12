@@ -54,7 +54,7 @@ export default function ShopProductCard(props) {
 
             {books !== null ?
             <Stack spacing={2} sx={{ p: 3 }}>
-                <Link to="#" color="inherit" underline="hover" component={RouterLink}>
+                <Link to={"/books/" + books.id_libro} color="inherit" underline="hover" component={RouterLink}>
                     <Typography variant="subtitle2" noWrap>
                         {books.nombre}
                     </Typography>

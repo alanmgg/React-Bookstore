@@ -7,26 +7,21 @@ import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton } from '@
 import MenuPopover from '../../components/MenuPopover';
 // mocks_
 import account from '../../_mock/account';
-// Notifications
-import ActionsNotifications from '../../components/ActionsNotifications';
+// Language
+import { FormattedMessage } from 'react-intl';
 
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
   {
-    label: 'Home',
+    label: <FormattedMessage id="account.home" defaultMessage="Home"/>,
     icon: 'eva:home-fill',
     linkTo: '/',
   },
   {
-    label: 'Profile',
+    label: <FormattedMessage id="account.profile" defaultMessage="Profile"/>,
     icon: 'eva:person-fill',
-    linkTo: '#',
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
-    linkTo: '#',
+    linkTo: '/profile',
   },
 ];
 
@@ -48,7 +43,7 @@ export default function AccountPopover() {
     } else {
       navigate('/login', { replace: true });
     }
-  });
+  }, []);
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -122,7 +117,7 @@ export default function AccountPopover() {
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         <MenuItem onClick={() => sessionClose()} sx={{ m: 1 }}>
-          Logout
+          <FormattedMessage id="account.logout" defaultMessage="Logout"/>
         </MenuItem>
       </MenuPopover>
     </>
