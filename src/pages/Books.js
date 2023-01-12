@@ -9,6 +9,8 @@ import { ProductSort, ProductCartWidget, ProductFilterSidebar } from '../section
 import { ProductList } from '../sections/@dashboard/books';
 // mock
 import PRODUCTS from '../_mock/products';
+// Language
+import { FormattedMessage } from 'react-intl';
 
 // ----------------------------------------------------------------------
 
@@ -30,20 +32,20 @@ export default function EcommerceShop() {
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={10}>
-            <Typography variant="h3" sx={{ mb: 3 }} style={{ color: '#2D61F5', fontWeight: 'bold' }}>
-              Books
+            <Typography variant="h3" sx={{ mb: 5 }} style={{ color: '#2D61F5', fontWeight: 'bold' }}>
+              <FormattedMessage id="books.title" defaultMessage="Books"/>
             </Typography>
           </Grid>
           
           <Grid item xs={12} md={6} lg={2}>
             <Button variant="contained" color="secondary" component="label" endIcon={<ArrowForwardRoundedIcon />} style={{ display: 'flex' }} 
             onClick={() => navigate('/books/save', { replace: true })}>
-              New book
+              <FormattedMessage id="buttons.newbook" defaultMessage="New book"/>
             </Button>
           </Grid>
         </Grid>
 
-        <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
+        {/* <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
           <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
             <ProductFilterSidebar
               isOpenFilter={openFilter}
@@ -52,7 +54,7 @@ export default function EcommerceShop() {
             />
             <ProductSort />
           </Stack>
-        </Stack>
+        </Stack> */}
 
         <ProductList products={PRODUCTS} />
         <ProductCartWidget />

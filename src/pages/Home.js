@@ -1,24 +1,55 @@
 import React, { useEffect, useState } from 'react';
 // @mui
-import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Card, CardContent } from '@mui/material';
 // components
 import Page from '../components/Page';
+// Api
+import { getMetrics } from '../api/metricsApi';
 // sections
 import { AppWidgetSummary } from '../sections/@dashboard/app';
+// Language
+import { FormattedMessage } from 'react-intl';
 
 // ----------------------------------------------------------------------
 
-var dataPublic = '6';
-
 export default function HomeApp() {
-  const theme = useTheme();
-
   const [publicidad, setPublicidad] = useState("6");
+  const [metricsApi, setMetricsApi] = useState(null);
   
   useEffect(() => {
-    setTimeout(() => {  changePublicidad(); }, 5000);
+    setTimeout(() => { changePublicidad(); }, 5000);
   });
+
+  useEffect(() => {
+    const sessionClient = localStorage.getItem('logClient');
+    const jsonClient = JSON.parse(sessionClient);
+    if (localStorage.getItem('logClient')) {
+        getMetrics(jsonClient.token, loadMetricHandler, loadErrorHandler);
+    } else {
+        navigate('/login', { replace: true });
+    }
+  }, []);
+
+    async function loadMetricHandler(response) {
+        if (response.ok) {
+            var metrics = await response.json();
+            setMetricsApi(metrics);
+            return;
+        }
+        if (response.status === 400) {
+            const error = await response.text();
+            throw new Error(error);
+        } else if (response.status === 401) {
+            const error = await response.json();
+            ActionsNotifications.pushLoadingError(error.message);
+        } else if (response.status === 404) {
+        const error = await response.json();
+        ActionsNotifications.pushLoadingError(error.detail);
+        }
+        throw new Error("Network response was not ok");
+    };
+
+    function loadErrorHandler(error) {};
 
   function changePublicidad (){
     if (publicidad === "6") {
@@ -34,7 +65,7 @@ export default function HomeApp() {
     <Page title="Bookbay">
       <Container maxWidth="xl">
         <Typography variant="h3" sx={{ mb: 5 }} style={{ color: '#2D61F5', fontWeight: 'bold' }}>
-          Hi, Welcome back
+            <FormattedMessage id="home.title" defaultMessage="Hi, welcome back!"/>
         </Typography>
 
         <Grid container spacing={3}>
@@ -50,19 +81,19 @@ export default function HomeApp() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Weekly Sales" total={714000} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary title={<FormattedMessage id="home.clients" defaultMessage="Clients"/>} total={metricsApi !== null ? metricsApi.clients : 0} icon={'mdi:user'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="New Users" total={1352831} color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary title={<FormattedMessage id="home.books" defaultMessage="Books"/>} total={metricsApi !== null ? metricsApi.books : 0} color="info" icon={'material-symbols:menu-book'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Item Orders" total={1723315} color="warning" icon={'ant-design:windows-filled'} />
+            <AppWidgetSummary title={<FormattedMessage id="home.editorials" defaultMessage="Editorials"/>} total={metricsApi !== null ? metricsApi.editorials : 0} color="warning" icon={'material-symbols:edit-square'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
+            <AppWidgetSummary title={<FormattedMessage id="home.authors" defaultMessage="Authors"/>} total={metricsApi !== null ? metricsApi.authors : 0} color="error" icon={'mdi:user-edit'} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={4}>

@@ -1,5 +1,7 @@
 // component
 import Iconify from '../../components/Iconify';
+// Language
+import { FormattedMessage } from 'react-intl';
 
 // ----------------------------------------------------------------------
 
@@ -7,7 +9,7 @@ const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
 const navConfig = [
   {
-    title: 'home',
+    title: <FormattedMessage id="sidebar.home" defaultMessage="Home"/>,
     path: '/home',
     icon: getIcon('eva:home-fill'),
   },
@@ -17,7 +19,7 @@ const navConfig = [
   //   icon: getIcon('eva:people-fill'),
   // },
   {
-    title: 'books',
+    title: <FormattedMessage id="sidebar.books" defaultMessage="Books"/>,
     path: '/books',
     icon: getIcon('eva:book-open-fill'),
   },

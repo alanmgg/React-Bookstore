@@ -10,13 +10,15 @@ import Page from '../components/Page';
 import { savePortada, savePortadaBooks, updatePathImage, createPathImage, createLibro  } from '../api/booksApi';
 // Notifications
 import ActionsNotifications from '../components/ActionsNotifications';
+// Language
+import { FormattedMessage } from 'react-intl';
 
 export default function SaveBook() {
     const navigate = useNavigate();
 
     const [path, setPath] = useState(null);
     const [picture, setPicture] = useState(null);
-    const [formBook, setFormBook] = useState({ nameBook: '', isbn10: 0, isbn13: 0, year: 0, pages: 0, price: 0, stock: 0, state: '', resenia: '' });
+    const [formBook, setFormBook] = useState({ nameBook: '', isbn10: 0, isbn13: 0, year: 0, pages: 0, price: 0, stock: 0, state: 'N', resenia: '' });
     const [formAuthor, setFormAuthor] = useState({ nameAuthor: '', apPaterno: '', apMaterno: '', countryAuthor: '' });
     const [formEditorial, setFormEditorial] = useState({ nameEditorial: '', countryEditorial: '' });
     const [formCategory, setFormCategory] = useState({ type: '' });
@@ -110,7 +112,7 @@ export default function SaveBook() {
             ActionsNotifications.pushSuccess('Book created successfully');
             setPath(null);
             setPicture(null);
-            setFormBook({ nameBook: '', isbn10: 0, isbn13: 0, year: 0, pages: 0, price: 0, stock: 0, state: '', resenia: '' });
+            setFormBook({ nameBook: '', isbn10: 0, isbn13: 0, year: 0, pages: 0, price: 0, stock: 0, state: 'N', resenia: '' });
             setFormAuthor({ nameAuthor: '', apPaterno: '', apMaterno: '', countryAuthor: '' });
             setFormEditorial({ nameEditorial: '', countryEditorial: '' });
             setFormCategory({ type: '' });
@@ -196,14 +198,14 @@ export default function SaveBook() {
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6} lg={10}>
                         <Typography variant="h3" sx={{ mb: 3 }} style={{ color: '#2D61F5', fontWeight: 'bold' }}>
-                            New book
+                            <FormattedMessage id="newbook.title" defaultMessage="New book"/>
                         </Typography>
                     </Grid>
                     
                     <Grid item xs={12} md={6} lg={2}>
                         <Button variant="contained" color="secondary" component="label" startIcon={<ArrowBackRoundedIcon />} style={{ display: 'flex' }} 
                         onClick={() => navigate('/books', { replace: true })}>
-                            Back
+                            <FormattedMessage id="buttons.back" defaultMessage="Back"/>
                         </Button>
                     </Grid>
                 </Grid>
@@ -213,7 +215,7 @@ export default function SaveBook() {
                         <Card>
                             <CardContent>
                                 <Typography variant="h6" sx={{ mb: 2 }} style={{ color: '#2D61F5', fontWeight: 'bold' }}>
-                                    Portada
+                                    <FormattedMessage id="newbook.cover" defaultMessage="Book cover"/>
                                 </Typography>
 
                                 {path !== null ? <img src={path} alt="cover"/>
@@ -226,7 +228,7 @@ export default function SaveBook() {
                                 </Box>}
 
                                 <Button variant="contained" color="secondary" component="label" endIcon={<PhotoCameraRoundedIcon />} sx={{ mt: 3 }} style={{ display: 'flex' }} onClick={() => setPath(null)} onChange={(e) => handleFileChange(e.target.files)}>
-                                    Upload
+                                    <FormattedMessage id="buttons.upload" defaultMessage="Upload"/>
                                     <input hidden accept="image/*" multiple type="file" />
                                 </Button>
                             </CardContent>
@@ -237,46 +239,46 @@ export default function SaveBook() {
                         <Card>
                             <CardContent>
                                 <Typography variant="h6" sx={{ mb: 2 }} style={{ color: '#2D61F5', fontWeight: 'bold' }}>
-                                    Libro
+                                    <FormattedMessage id="newbook.book" defaultMessage="Book"/>
                                 </Typography>
 
-                                <TextField fullWidth label="Name" color="secondary" sx={{ mb: 2 }} value={formBook.nameBook !== '' ? formBook.nameBook : ''} onChange={(e) => fillFields('nameBook', e.target.value)}/>
+                                <TextField fullWidth label={<FormattedMessage id="textfield.namebook" defaultMessage="Name of the book"/>} color="secondary" sx={{ mb: 2 }} value={formBook.nameBook !== '' ? formBook.nameBook : ''} onChange={(e) => fillFields('nameBook', e.target.value)}/>
                                 <TextField label="ISBN-10" color="secondary" type="number" sx={{ mb: 2, mr: 3 }} value={formBook.isbn10 !== 0 ? formBook.isbn10 : ''} onChange={(e) => fillFields('isbn10', e.target.value)}/>
                                 <TextField label="ISBN-13" color="secondary" type="number" sx={{ mb: 2, mr: 3 }} value={formBook.isbn13 !== 0 ? formBook.isbn13 : ''} onChange={(e) => fillFields('isbn13', e.target.value)}/>
-                                <TextField label="Year" color="secondary" type="number" sx={{ mb: 2 }} value={formBook.year !== 0 ? formBook.year : ''} onChange={(e) => fillFields('year', e.target.value)}/>
-                                <TextField label="Pages" color="secondary" type="number" sx={{ mb: 2, mr: 3 }} value={formBook.pages !== 0 ? formBook.pages : ''} onChange={(e) => fillFields('pages', e.target.value)}/>
-                                <TextField label="Price" color="secondary" type="number" sx={{ mb: 2, mr: 3 }} value={formBook.price !== 0 ? formBook.price : ''} onChange={(e) => fillFields('price', e.target.value)}/>
+                                <TextField label={<FormattedMessage id="textfield.year" defaultMessage="Year"/>} color="secondary" type="number" sx={{ mb: 2 }} value={formBook.year !== 0 ? formBook.year : ''} onChange={(e) => fillFields('year', e.target.value)}/>
+                                <TextField label={<FormattedMessage id="textfield.pages" defaultMessage="Number of pages"/>} color="secondary" type="number" sx={{ mb: 2, mr: 3 }} value={formBook.pages !== 0 ? formBook.pages : ''} onChange={(e) => fillFields('pages', e.target.value)}/>
+                                <TextField label={<FormattedMessage id="textfield.price" defaultMessage="Price"/>} color="secondary" type="number" sx={{ mb: 2, mr: 3 }} value={formBook.price !== 0 ? formBook.price : ''} onChange={(e) => fillFields('price', e.target.value)}/>
                                 <TextField label="Stock" color="secondary" type="number" sx={{ mb: 2 }} value={formBook.stock !== 0 ? formBook.stock : ''} onChange={(e) => fillFields('stock', e.target.value)}/>
-                                <Select fullWidth label="State" color="secondary" sx={{ mb: 2 }} value={formBook.state !== '' ? formBook.state : ''} onChange={(e) => fillFields('state', e.target.value)}>
-                                    <MenuItem value={'N'}>Nuevo</MenuItem>
-                                    <MenuItem value={'U'}>Usado</MenuItem>
+                                <Select fullWidth label="State" color="secondary" sx={{ mb: 2 }} value={formBook.state !== '' ? formBook.state : 'N'} onChange={(e) => fillFields('state', e.target.value)}>
+                                    <MenuItem value={'N'}><FormattedMessage id="textfield.new" defaultMessage="New"/></MenuItem>
+                                    <MenuItem value={'U'}><FormattedMessage id="textfield.used" defaultMessage="Used"/></MenuItem>
                                 </Select>
-                                <TextField fullWidth label="Reseña" color="secondary" multiline rows={6} sx={{ mb: 2 }} value={formBook.resenia !== '' ? formBook.resenia : ''} onChange={(e) => fillFields('resenia', e.target.value)}/>
+                                <TextField fullWidth label={<FormattedMessage id="textfield.bookreview" defaultMessage="Book review"/>} color="secondary" multiline rows={6} sx={{ mb: 2 }} value={formBook.resenia !== '' ? formBook.resenia : ''} onChange={(e) => fillFields('resenia', e.target.value)}/>
 
                                 <Typography variant="h6" sx={{ mb: 2 }} style={{ color: '#2D61F5', fontWeight: 'bold' }}>
-                                    Autor
+                                    <FormattedMessage id="newbook.author" defaultMessage="Author"/>
                                 </Typography>
 
-                                <TextField label="Nombres" color="secondary" sx={{ mb: 2, mr: 3 }} value={formAuthor.nameAuthor !== '' ? formAuthor.nameAuthor : ''} onChange={(e) => fillFields('nameAuthor', e.target.value)}/>
-                                <TextField label="Apellido paterno" color="secondary" sx={{ mb: 2, mr: 3 }} value={formAuthor.apPaterno !== '' ? formAuthor.apPaterno : ''} onChange={(e) => fillFields('apPaterno', e.target.value)}/>
-                                <TextField label="Apellido materno (opcional)" color="secondary" sx={{ mb: 2 }} value={formAuthor.apMaterno !== '' ? formAuthor.apMaterno : ''} onChange={(e) => fillFields('apMaterno', e.target.value)}/>
-                                <TextField fullWidth label="Pais" color="secondary" sx={{ mb: 2 }} value={formAuthor.countryAuthor !== '' ? formAuthor.countryAuthor : ''} onChange={(e) => fillFields('countryAuthor', e.target.value)}/>
+                                <TextField label={<FormattedMessage id="textfield.names" defaultMessage="Names"/>} color="secondary" sx={{ mb: 2, mr: 3 }} value={formAuthor.nameAuthor !== '' ? formAuthor.nameAuthor : ''} onChange={(e) => fillFields('nameAuthor', e.target.value)}/>
+                                <TextField label={<FormattedMessage id="textfield.last" defaultMessage="Last name"/>} color="secondary" sx={{ mb: 2, mr: 3 }} value={formAuthor.apPaterno !== '' ? formAuthor.apPaterno : ''} onChange={(e) => fillFields('apPaterno', e.target.value)}/>
+                                <TextField label={<FormattedMessage id="textfield.mothers" defaultMessage="Mother's last name (optional)"/>} color="secondary" sx={{ mb: 2 }} value={formAuthor.apMaterno !== '' ? formAuthor.apMaterno : ''} onChange={(e) => fillFields('apMaterno', e.target.value)}/>
+                                <TextField fullWidth label={<FormattedMessage id="textfield.country" defaultMessage="Country"/>} color="secondary" sx={{ mb: 2 }} value={formAuthor.countryAuthor !== '' ? formAuthor.countryAuthor : ''} onChange={(e) => fillFields('countryAuthor', e.target.value)}/>
 
                                 <Typography variant="h6" sx={{ mb: 2 }} style={{ color: '#2D61F5', fontWeight: 'bold' }}>
-                                    Editorial
+                                    <FormattedMessage id="newbook.publisher" defaultMessage="Publisher"/>
                                 </Typography>
 
-                                <TextField fullWidth label="Nombre" color="secondary" sx={{ mb: 2 }} value={formEditorial.nameEditorial !== '' ? formEditorial.nameEditorial : ''} onChange={(e) => fillFields('nameEditorial', e.target.value)}/>
-                                <TextField fullWidth label="Pais" color="secondary" sx={{ mb: 2 }} value={formEditorial.countryEditorial !== '' ? formEditorial.countryEditorial : ''} onChange={(e) => fillFields('countryEditorial', e.target.value)}/>
+                                <TextField fullWidth label={<FormattedMessage id="textfield.namepublisher" defaultMessage="Publisher's name"/>} color="secondary" sx={{ mb: 2 }} value={formEditorial.nameEditorial !== '' ? formEditorial.nameEditorial : ''} onChange={(e) => fillFields('nameEditorial', e.target.value)}/>
+                                <TextField fullWidth label={<FormattedMessage id="textfield.country" defaultMessage="Country"/>} color="secondary" sx={{ mb: 2 }} value={formEditorial.countryEditorial !== '' ? formEditorial.countryEditorial : ''} onChange={(e) => fillFields('countryEditorial', e.target.value)}/>
 
                                 <Typography variant="h6" sx={{ mb: 2 }} style={{ color: '#2D61F5', fontWeight: 'bold' }}>
-                                    Categoria
+                                    <FormattedMessage id="newbook.category" defaultMessage="Category"/>
                                 </Typography>
 
-                                <TextField fullWidth label="Tipo" color="secondary" sx={{ mb: 2 }} value={formCategory.type !== '' ? formCategory.type : ''} onChange={(e) => fillFields('type', e.target.value)}/>
+                                <TextField fullWidth label={<FormattedMessage id="textfield.type" defaultMessage="Type"/>} color="secondary" sx={{ mb: 2 }} value={formCategory.type !== '' ? formCategory.type : ''} onChange={(e) => fillFields('type', e.target.value)}/>
                                 
                                 <Button variant="contained" color="secondary" component="label" endIcon={<SendRoundedIcon />} sx={{ mt: 3 }} style={{ display: 'flex' }} onClick={() => submitData()}>
-                                    Save
+                                    <FormattedMessage id="buttons.save" defaultMessage="Save"/>
                                 </Button>
                             </CardContent>
                         </Card>

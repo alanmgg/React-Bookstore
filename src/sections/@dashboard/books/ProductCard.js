@@ -9,6 +9,8 @@ import { fCurrency } from '../../../utils/formatNumber';
 // components
 import Label from '../../../components/Label';
 import { ColorPreview } from '../../../components/color-utils';
+// Language
+import { FormattedMessage } from 'react-intl';
 
 // ----------------------------------------------------------------------
 
@@ -44,7 +46,7 @@ export default function ShopProductCard(props) {
                     textTransform: 'uppercase',
                     }}
                 >
-                    {books.estado === 'N' ? 'Nuevo' : 'Usado'}
+                    {books.estado === 'N' ? <FormattedMessage id="books.new" defaultMessage="New"/> : <FormattedMessage id="books.used" defaultMessage="Used"/>}
                 </Label>
                 <ProductImgStyle alt={books.nombre} src={'https://bookbay.duckdns.org/api/v1/images/' + books.id_image} />
             </Box>

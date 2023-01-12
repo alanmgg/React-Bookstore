@@ -1,4 +1,6 @@
 {
+    "textfield.namebook": "Name of the book",
+    "textfield.namepublisher": "Publisher's name",
     "textfield.names": "Names",
     "textfield.last": "Last name",
     "textfield.mothers": "Mother's last name (optional)",
@@ -6,8 +8,23 @@
     "textfield.phone": "Phone number",
     "textfield.direction": "Direction",
     "textfield.password": "Password",
+    "textfield.year": "Year",
+    "textfield.pages": "Number of pages",
+    "textfield.price": "Price",
+    "textfield.new": "New",
+    "textfield.used": "Used",
+    "textfield.bookreview": "Book Review",
+    "textfield.country": "Country",
+    "textfield.type": "Type",
 
     "buttons.backtohome": "Back to home",
+    "buttons.newbook": "New book",
+    "buttons.back": "Back",
+    "buttons.upload": "Upload",
+    "buttons.save": "Save",
+
+    "sidebar.home": "Home",
+    "sidebar.books": "Books",
 
     "login.title": "Hi, welcome back!",
     "login.subtitle": "Sign in to Bookbay",
@@ -77,5 +94,22 @@
     "privacy.share.paragraph": "The information related to our clients is a fundamental part of our business and we do not participate in the sale to third parties of personal data of our clients. We share customers' personal data only in the ways described below with Bookbay.store, Inc. and subsidiaries under the control of Bookbay.store, Inc., which are subject to this Privacy Notice or follow practices to the least as protective as those described in this Privacy Notice.",
     "privacy.share.list": "Third Party Service Providers: We employ other companies and individuals to perform services on our behalf. For example, fulfilling orders for products or services, delivering packages, sending postal mail and email, removing repetitive information from customer lists, analyzing data, providing marketing assistance, providing search results and links (including links and mailing lists). payment) process payments, transmit content, rate, assess and manage credit risk and provide customer service. These third party service providers have access to certain personal data necessary to perform their functions, but may not use it for other purposes.",
     "privacy.share.listtwo": "Business Transfer: As we develop our business, we may buy or sell other businesses or services. In such transactions, customer personal data is typically one of the transferred business assets; however, said data will in any case be subject to the commitments acquired in this pre-existing Privacy Notice (unless, of course, the client authorizes it otherwise). Of course, in the unlikely event that Bookbay.store, or most of its assets are acquired, personal data relating to customers would be one of the transferred assets. With your consent to this Privacy Notice, you agree to share your information in accordance with this Privacy Notice for the purposes mentioned in this paragraph.",
-    "privacy.share.listhree": "Protection of Bookbay and Others: We disclose personal data and account data when we believe disclosure is necessary for compliance with the law, to enforce or apply the Terms of Use and other agreements, or to protect the rights, property, or safety of Bookbay, our users or third parties. The foregoing includes the exchange of information with other companies and organizations for protection against fraud and credit risk reduction."
+    "privacy.share.listhree": "Protection of Bookbay and Others: We disclose personal data and account data when we believe disclosure is necessary for compliance with the law, to enforce or apply the Terms of Use and other agreements, or to protect the rights, property, or safety of Bookbay, our users or third parties. The foregoing includes the exchange of information with other companies and organizations for protection against fraud and credit risk reduction.",
+
+    "home.title": "Hi, welcome back!",
+    "home.clients": "Clients",
+    "home.books": "Books",
+    "home.editorials": "Publishers",
+    "home.authors": "Authors",
+
+    "books.title": "Books",
+    "books.new": "New",
+    "books.used": "Used",
+    
+    "newbook.title": "New book",
+    "newbook.cover": "Book cover",
+    "newbook.book": "Book",
+    "newbook.author": "Author",
+    "newbook.publisher": "Publisher",
+    "newbook.category": "Category"
 }

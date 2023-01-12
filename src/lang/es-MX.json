@@ -1,4 +1,6 @@
 {
+    "textfield.namebook": "Nombre del libro",
+    "textfield.namepublisher": "Nombre de la editorial",
     "textfield.names": "Nombres",
     "textfield.last": "Apellido paterno",
     "textfield.mothers": "Apellido materno (opcional)",
@@ -6,8 +8,23 @@
     "textfield.phone": "Número de teléfono",
     "textfield.direction": "Dirección",
     "textfield.password": "Contraseña",
+    "textfield.year": "Año",
+    "textfield.pages": "Número de páginas",
+    "textfield.price": "Precio",
+    "textfield.new": "Nuevo",
+    "textfield.used": "Usado",
+    "textfield.bookreview": "Reseña del libro",
+    "textfield.country": "País",
+    "textfield.type": "Tipo",
 
     "buttons.backtohome": "Regresar a inicio",
+    "buttons.newbook": "Nuevo libro",
+    "buttons.back": "Atrás",
+    "buttons.upload": "Subir",
+    "buttons.save": "Guardar",
+
+    "sidebar.home": "Inicio",
+    "sidebar.books": "Libros",
 
     "login.title": "Hola, bienvenid@ de nuevo!",
     "login.subtitle": "Iniciar sesión en Bookbay",
@@ -77,5 +94,22 @@
     "privacy.share.paragraph": "La información relativa a nuestros clientes es parte fundamental de nuestro negocio y no participamos en la venta a terceros de datos personales de nuestros clientes. Compartimos los datos personales de los clientes sólo en la forma que se describe a continuación con Bookbay.store, Inc. y con filiales bajo el control de Bookbay.store, Inc., las cuales están sujetas al presente Aviso de Privacidad o siguen prácticas al menos tan protectoras como las descritas en el presente Aviso de Privacidad.",
     "privacy.share.list": "Proveedores de servicios externos: Empleamos a otras empresas e individuos para realizar servicios en nuestro nombre. Por ejemplo, despachar pedidos de productos o servicios, entregar paquetes, enviar correo postal y correo electrónico, eliminar información repetitiva de las listas de clientes, analizar datos, brindar asistencia de marketing, proporcionar resultados de búsqueda y enlaces, (incluyendo enlaces y listas de pago) procesar pagos, transmitir contenido, calificar, evaluar y gestionar el riesgo de crédito y proporcionar servicio al cliente. Estos terceros proveedores de servicios tienen acceso a ciertos datos personales necesarios para realizar sus funciones, pero no pueden utilizarla para otros propósitos.",
     "privacy.share.listtwo": "Transferencia de Negocios: A medida que desarrollamos nuestro negocio, podemos comprar o vender otros negocios o servicios. En dichas transacciones, los datos personales de los clientes suelen ser uno de los activos de los negocios transferidos; sin embargo, dichos datos estarán en todo caso sujetos a los compromisos adquiridos en el presente Aviso de Privacidad preexistente (a menos, claro está, que el cliente lo autorice de otro modo). Por supuesto, en el improbable caso de que Bookbay.store, o la mayor parte de sus activos sean adquiridos, los datos personales relativos a los clientes sería uno de los activos transferidos. Con su consentimiento a este Aviso de Privacidad, usted acepta compartir su información de acuerdo con este Aviso de Privacidad para los propósitos mencionados en este párrafo.",
-    "privacy.share.listthree": "Protección de Bookbay y Otros: Divulgamos datos personales y datos de cuentas cuando creemos que su divulgación es necesaria para el cumplimiento de la ley, para hacer cumplir o aplicar las Condiciones de Uso y otros acuerdos o para proteger los derechos, la propiedad o seguridad de Bookbay, nuestros usuarios o terceros. Lo anterior, incluye el intercambio de información con otras sociedades y organizaciones para la protección contra el fraude y la reducción del riesgo de crédito."
+    "privacy.share.listthree": "Protección de Bookbay y Otros: Divulgamos datos personales y datos de cuentas cuando creemos que su divulgación es necesaria para el cumplimiento de la ley, para hacer cumplir o aplicar las Condiciones de Uso y otros acuerdos o para proteger los derechos, la propiedad o seguridad de Bookbay, nuestros usuarios o terceros. Lo anterior, incluye el intercambio de información con otras sociedades y organizaciones para la protección contra el fraude y la reducción del riesgo de crédito.",
+
+    "home.title": "Hola, bienvenido de nuevo!",
+    "home.clients": "Clientes",
+    "home.books": "Libros",
+    "home.editorials": "Editoriales",
+    "home.authors": "Autores",
+    
+    "books.title": "Libros",
+    "books.new": "Nuevo",
+    "books.used": "Usado",
+
+    "newbook.title": "Nuevo libro",
+    "newbook.cover": "Portada del libro",
+    "newbook.book": "Libro",
+    "newbook.author": "Autor",
+    "newbook.publisher": "Editorial",
+    "newbook.category": "Categoria"
 }

@@ -46,7 +46,7 @@ export default function ProductList({ products, ...other }) {
         throw new Error("Network response was not ok");
       };
     
-      function loadErrorHandler(error) {};
+    function loadErrorHandler(error) {};
 
     return (
         <Grid container spacing={3} {...other}>
